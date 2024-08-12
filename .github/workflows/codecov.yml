@@ -32,20 +32,14 @@ jobs:
         shell: bash
         run: ./build/tests/test_hellocov
 
-      - name: lcov collection
-        shell: bash
-        run: |
-          cd build
-          lcov -c -d ./ -o cover.info
+      - name: Generate coverage file
+        run: gcovr -v -r . --xml-pretty --xml=coverage.xml --exclude 'build/*' --exclude 'tests/*' --exclude 'benchmarks/*' --verbose
 
-#      - uses: arduino/cpp-test-action@v1
-#        with:
-#          coverage-data-path: ${{ env.COVERAGE_DATA_PATH }}
-#          source-path: ./
-#          build-path: build
-#          runtime-paths: build/tests/test_hellocov
-
-      # Optional: upload coverage report to codecov.io
-      - uses: codecov/codecov-action@v1
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
         with:
-          file: build/cover.info
+          fail_ci_if_error: true
+          files: coverage.xml
+          verbose: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
