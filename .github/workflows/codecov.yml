@@ -49,6 +49,7 @@ jobs:
         export PATH=$VCPKG_ROOT:$PATH;
         export VCPKG_FORCE_SYSTEM_BINARIES=1;
         which vcpkg;
+        cmake -B build -S .
 
     - name: Build project
       run: cmake --build build -j `nproc`
