@@ -7,5 +7,5 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 add_subdirectory(src)
 
 enable_testing()
-add_subdirectory(tests)
+add_subdirectory(test)
 
