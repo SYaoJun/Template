@@ -22,7 +22,7 @@ jobs:
         sudo apt install -y python3-pip ninja-build;
         sudo apt install -y curl zip unzip tar pkg-config;
         sudo apt install -y autoconf libtool;
-        sudo apt install -y  gcovr lcov 
+        sudo apt install -y  gcovr lcov  libgtest-dev;
 
     - name: Config project
       run: |
